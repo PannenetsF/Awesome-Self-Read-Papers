@@ -1,0 +1,32 @@
+section_name: lane-detection
+# read level
+abs: &abs abs
+rough: &rough rough
+detailed: &detailed detailed
+# tags
+rev: &rev review
+# labs or certain author
+section:
+  - 
+    name: A Review of Lane Detection Methods based on Deep Learning
+    publisher: Pattern Recognition
+    year: 2021
+    tags: 
+      - *rev
+    logic: >
+      How to extract features: 1) CNN; 2) RNN to merge temporal info (STLNet). 3) Kalman filter for lane tracking prediction. 4) Dilated convolution to prevent loss in downsampling, and could be used many times to gather more. 5) Non-local operations to focus on certain region. 6)
+      
+      How to cluster: RANSAC. 
+
+      What to predict: 1) start/end points of lane and their depth. 2) vanishing point (VP) to give geometry info of the scene. 3) a 3-point quadratic curve of lane. 
+
+      What to post-process: 1) each lane is a class. 2) each lane is a instance. 
+
+      How to design loss: 1) the imbalance of background and lane. 2) large-margin softmax.
+
+      How to pre-process: 1) ROI. 2) inverse perspective transformation.
+
+      How to post-process: 1) Density-Based Spatial Clustering of Applications with Noise. 2) 
+
+      Need to Read: 1) LaneNet, what is parameters regression? 2)
+    read: *rough
