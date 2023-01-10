@@ -1,0 +1,20 @@
+section_name: name
+# read level
+abs: &abs abs
+rough: &rough rough
+detailed: &detailed detailed
+# tags
+
+# labs or certain author
+
+section:
+  - 
+    name: test
+    publisher: test
+    year: 2022
+    tags:
+      - test
+    logic: >
+      This is a sentence.
+    team: test
+    read: *abs
