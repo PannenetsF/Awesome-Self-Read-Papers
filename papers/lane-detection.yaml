@@ -5,6 +5,12 @@ rough: &rough rough
 detailed: &detailed detailed
 # tags
 rev: &rev review
+kpts: &kpts keypoints
+curve: &curve curve
+seg: &seg segment
+newds: &newds new dataset
+metric: &metric metric
+det: &det detection
 # labs or certain author
 section:
   - 
@@ -30,3 +36,99 @@ section:
 
       Need to Read: 1) LaneNet, what is parameters regression? 2)
     read: *rough
+  - 
+    name: Rethinking Efficient Lane Detection via Curve Modeling
+    publisher: CVPR
+    year: 2022
+    tags:
+      - *curve
+    logic: >
+      Curves are more naturally representation of lanes. This paper models lanes as cubic Bezier curves, as they have intrinsic geometry on image. Also, cars usually stay in the middle of two lanes, thus they are symmetric. This paper proposes a module to merge info from flipped features named Feature Flip Fusion. The loss contains curve regression loss, lane existence loss and segmentation loss to provide a more spatial feature map.
+    read: *detailed
+  - 
+    name: A Keypoint-Based Global Association Network for Lane Detection
+    publisher: CVPR
+    year: 2022
+    tags:
+      - *kpts
+    logic: >
+      This paper directly regress keypoints to start point directly, where offsets are predicted.
+    read: *detailed
+  - 
+    name: >
+      Eigenlanes: Data-Driven Lane Descriptors for Structurally Diverse Lanes
+    publisher: CVPR
+    year: 2022
+    tags:
+      - *curve
+      - *newds
+    logic: >
+      It is a paper mainly about how to model a curved/straight lane. 
+      This paper contains (1) lane candidates generation: take lanes from training set, and find their SVD. (2) a network, predicting probability of lane cad, scores of lanes combination, and regressing the offset of combination. NMS and MWCS are used in post processing. The work performs well on curved lanes than others. 
+    read: *detailed
+  - 
+    name: Towards Driving-Oriented Metric for Lane Detection Models
+    publisher: CVPR
+    year: 2022
+    tags:
+      - *metric
+      - *newds
+    logic: >
+      This paper proposed two autonomous driving oriented metrics: 1) end to end lateral deviation metrics, 2) per-frame simulated lateral deviation metric. Traditional metric could have strongly negative correlations with them, thus some methods could have been overfitting to the dataset. The two metrics are mainly about the deviation between lane center.
+
+    read: *rough
+  - 
+    name: >
+      CLRNet: Cross Layer Refinement Network for Lane Detection
+    publisher: CVPR
+    year: 2022
+    tags:
+      - *kpts
+    logic: >
+      Note that, the points it used should be treated as a set. The cross layer refinement is to take use of each level of features to get a better lane points (prior). The ROI gather gets info from ROI to lane and adds output to lane prior. The line IOU loss treats line as one part, hoping the lane and gt could be the same in length, angle, start point. In the ablation, we could see the most valuable part is the CLR part, and then the loss. 
+    read: *rough
+  - 
+    name: >
+      Towards End-to-End Lane Detection: an Instance Segmentation Approach
+    publisher: Intelligent Vehicles Symposium (IV)
+    year: 2018
+    tags: 
+      - *seg
+    logic: >
+      LaneNet uses two segment branches for detection, one for the binary lane mask, one for the distance embedding which targets at minimizing the distance between points in one lane. Note that, the curve is fitted in H-Net space and then turns back to image.
+    read: *rough
+  -
+    name: >
+      Spatial As Deep: Spatial CNN for Traffic Scene Understanding
+    publisher: AAAI
+    year: 2018
+    tags:
+      - *seg
+    logic: >
+      Lanes on roads could be invisible while an AD system should estimate it as well as human. In the process, spatial information should be leveraged while keep it easy to be trained. The spatial CNN send its previous output to next slice just like RNN while keeps higher efficiency. 
+      In the ablation, we can see the effectiveness of multi-direction SCNN, window width of message passing, the better position to place the module, the way to add it as residual rather than get a weighted sum. 
+    read: *detailed
+  -
+    name: >
+      Keep your Eyes on the Lane: Real-time Attention-guided Lane Detection
+    publisher: CVPR
+    year: 2021
+    tags: *det
+    logic: >
+      This paper proposed Lane-ATT with anchor based proposal pooling and attention mechanism. The anchor is defined with a start point and a angle. The attention is to aggregate the global info the tensors. Note that, the proposal is the most important part, which provides a structure prior. Also, it leverages parallelism and equidistance of lanes to predict the boundaries. 
+    read: *detailed
+  -
+    name: >
+      FastDraw: Addressing the Long Tail of Lane Detection by Adapting a Sequential Prediction Network
+    publisher: CVPR
+    year: 2019
+    logic: >
+      This paper predicts the distribution of a point and a possible lane, then finds the lane with greedy algorithms.
+  -
+    name: >
+      Lane detection using lane boundary marker network with road geometry constraints
+    publisher: WACV
+    year: 2020
+    tags: *kpts
+    logic: > 
+      This paper applied inverse perspective mapping to turn the input image of car's camera into a bird-view one. On the view, it predicts key-points by lane boundaries and the weighted average them into a lane. The lane boundaries are left, right, center, which could be used together with the lane self. If the lane is without lane marker, the methods could find the evidence from the surroundings.
