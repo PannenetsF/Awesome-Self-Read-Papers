@@ -29,4 +29,9 @@ Pannenets' Read Papers and Note.
 | Publisher | Year | Name | Tags | Team | Read | Logic |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | <strong><code>ICLR</code></strong>  | 2023 | Data Valuation Without Training of a Model | <strong><code>data</code></strong>  |  | <strong><code>rough</code></strong>  | This paper proposes the complexity gap score of data, which could inflect the complexity of data, i.e., the difficulty to learn from it. The score is from Gram matrix, and is easy to compute. However, no WHY TO DO IT LIKE THAT is provided.<br/> |
+## understand 
+
+| Publisher | Year | Name | Tags | Team | Read | Logic |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| <strong><code>ICLR</code></strong>  | 2023 | Towards Understanding Ensemble, Knowledge Distillation and Self-Distillation in Deep Learning | <strong><code>ensemble</code></strong>  |  | <strong><code>rough</code></strong>  | 1. The learning of deep networks could be treated as learning a function with some random noise (related to the seed). Thus, after ensemble, the noise could be reduced. But this paper DOUBTS it! If the number of ensemble increase continuously, the performance would saturate. If the bias of the noise is non-zero, why would it works.  2. The paper proposes a theorem that networks learn some certain features, but they could be not complete. With those part-feature, the network could know that some cases could provide gradients as they do not have these features. In Ensemble, the models' outputs are averaged to use all features in the models.  In Distillation, the model are learning from each others with the left features. In Self-Distillation, the model learns features in different angle of seed, which could fix the previous caught features.<br/> |
 
