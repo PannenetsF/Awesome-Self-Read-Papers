@@ -24,4 +24,9 @@ Pannenets' Read Papers and Note.
 | Publisher | Year | Name | Tags | Team | Read | Logic |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | <strong><code>ICLR</code></strong>  | 2023 | PowerQuant: Automorphism Search For Non-Uniform Quantization<br/> | <strong><code>non-uniform</code></strong>  |  | <strong><code>abs</code></strong>  | This paper hope to propose a non-uniform quantization in data-free way and it should be hardware-friendly without dedicated design, which is a simple change to activation in PowerQuant.   It proves that the power function makes sure the matrix multiplication in quantized space and does quantization in this way. But the de-quantization requires Newton's method to get the power a back. The optimal power exponent is searched by Nelder-Mead method.<br/>def compute_newton_sqrt(x: tf.Variable) -&gt; tf.Variable:<br/>  """<br/>  the algorithm assumes that x is positive non-zero.<br/>  """<br/>  max_iter = 5<br/>  x_0 = tf.math.pow(2.0, tf.math.round((tf.math.log(x) / tf.math.log(2.0)) / 2.0))<br/>  for cpt in range(max_iter):<br/>      x_next = tf.math.round((x_0 + tf.math.round(x / x_0)) / 2.0)<br/>  return x_next<br/> |
+## metric 
+
+| Publisher | Year | Name | Tags | Team | Read | Logic |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| <strong><code>ICLR</code></strong>  | 2023 | Data Valuation Without Training of a Model | <strong><code>data</code></strong>  |  | <strong><code>rough</code></strong>  | This paper proposes the complexity gap score of data, which could inflect the complexity of data, i.e., the difficulty to learn from it. The score is from Gram matrix, and is easy to compute. However, no WHY TO DO IT LIKE THAT is provided.<br/> |
 
